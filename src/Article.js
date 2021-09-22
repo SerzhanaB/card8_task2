@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Article extends Component {
+class Article extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = { isOpen: props.defaultOpen };
+    this.state = { count: 0  };
     //this.handleClick =handleClick.bind(this)
   }
   //state = { isOpen: true };
@@ -12,7 +12,7 @@ class Article extends Component {
   componentWillMount() {
     //console.log("component will mount");
   }
-
+/*
   componentWillReceiveProps(nextProps) {
    // console.log("will receive props");
 
@@ -21,19 +21,15 @@ class Article extends Component {
         isOpen: nextProps.defaultOpen,
       });
   }
-
+*/
   componentWillUpdate() {
     console.log("will update");
   }
 
-  handleClick = () => {
-    console.log("clicked");
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
+ 
   render() {
-    const { article } = this.props;
-    const body = this.state.isOpen && (
+    const { article,isOpen, onButtonClick } = this.props;
+    const body = isOpen && (
       <section className="card-text"> {article.text} </section>
     );
     return (
@@ -42,10 +38,10 @@ class Article extends Component {
           <h2>
             {article.title}
             <button
-              onClick={this.handleClick}
+              onClick={onButtonClick}
               className="btn btn-secondary btn-sm float-right"
             >
-              {this.state.isOpen ? "Close" : "Open"}
+              {isOpen ? "Close" : "Open"}
             </button>
           </h2>
         </div>
