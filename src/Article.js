@@ -9,12 +9,12 @@ class Article extends Component {
   }
   //state = { isOpen: true };
 
-  componentDidMount() {
-    console.log("component did mount");
+  componentWillMount() {
+    //console.log("component will mount");
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("will receive props");
+   // console.log("will receive props");
 
     if (nextProps.defaultOpen !== this.props.defaultOpen)
       this.setState({
